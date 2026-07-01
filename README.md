@@ -31,6 +31,12 @@
 
 Built in **~2 hours** for the **Swift Robotics** internship assessment.
 
+<p align="center">
+  <a href="https://www.loom.com/share/34aa7540812c45d9b0f8f9f0468f42eb">
+    <img src="https://img.shields.io/badge/Walkthrough-Loom-625DF5?style=for-the-badge&logo=loom" alt="Loom Walkthrough">
+  </a>
+</p>
+
 ---
 
 ## Architecture
