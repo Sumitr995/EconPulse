@@ -8,14 +8,22 @@ function ChipList({ title, items, listKey, onUpdate }) {
 
   const handleAdd = async () => {
     if (!value.trim()) return;
-    await addItem(listKey, value.trim());
-    setValue("");
-    onUpdate();
+    try {
+      await addItem(listKey, value.trim());
+      setValue("");
+      onUpdate();
+    } catch {
+      alert(`Failed to add "${value.trim()}". It may already exist or the server is unavailable.`);
+    }
   };
 
   const handleRemove = async (val) => {
-    await removeItem(listKey, val);
-    onUpdate();
+    try {
+      await removeItem(listKey, val);
+      onUpdate();
+    } catch {
+      alert(`Failed to remove "${val}". Please try again.`);
+    }
   };
 
   return (

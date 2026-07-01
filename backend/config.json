@@ -1,8 +1,20 @@
 {
   "country": "India",
   "topics": [
-    "economy"
+    "economy",
+    "GDP growth",
+    "inflation",
+    "RBI monetary policy",
+    "trade deficit"
   ],
-  "sources": [],
-  "competitors": []
+  "sources": [
+    "reuters.com",
+    "bloomberg.com",
+    "economictimes.indiatimes.com",
+    "livemint.com"
+  ],
+  "competitors": [
+    "China economy",
+    "US Federal Reserve"
+  ]
 }
