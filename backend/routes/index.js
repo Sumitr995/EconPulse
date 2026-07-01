@@ -6,6 +6,11 @@ import competitorRoutes from "./competitorRoutes.js";
 import newsRoutes from "./newsRoutes.js";
 
 const router = Router();
+
+router.get("/", (_req, res) => {
+  res.send("Hello from EconPulse!");
+});
+
 router.use("/config", configRoutes);
 router.use("/topics", topicRoutes);
 router.use("/sources", sourceRoutes);

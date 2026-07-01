@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const client = axios.create({ baseURL: "/api" });
+const client = axios.create({ baseURL: "https://econ-pulse-backend.vercel.app" });
 
 export async function getConfig() {
   const { data } = await client.get("/config");
