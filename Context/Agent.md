@@ -1,7 +1,7 @@
 # EconPulse — Agent Instructions
 
 ## Stack
-- **Backend**: Node.js (ESM) + Express, port 4000
+- **Backend**: Node.js (ESM) + Express, port 5000
 - **Frontend**: React + Vite + shadcn/ui + Tailwind
 - **AI**: Gemini (`gemini`) or OpenAI (`openai`) — set via `AI_PROVIDER` env var, key via `AI_API_KEY`
 - **News**: NewsAPI.org (`NEWSAPI_KEY`)
@@ -57,7 +57,7 @@ Categories: `"Monetary Policy" | "Trade" | "Fiscal" | "Markets" | "Competitor" |
 - Sidebar: 3 sections (Topics / Sources / Competitors), removable chips + add input
 - News: cards grouped by category, importance as shadcn `Badge`, clickable title, summary
 - Refresh button calls `/news/run` again
-- Vite config must proxy `/api` → `http://localhost:4000`
+- Vite config must proxy `/api` → `http://localhost:5000`
 
 ## Environment variables (`.env` in /backend)
 ```

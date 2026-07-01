@@ -22,7 +22,7 @@ npm install axios
 npx shadcn@latest init
 npx shadcn@latest add card badge button input
 ```
-Run backend: `node server.js` (port 4000). Run frontend: `npm run dev` inside `/frontend`, proxy `/api` → `http://localhost:4000` in `vite.config.js`.
+Run backend: `node server.js` (port 5000). Run frontend: `npm run dev` inside `/frontend`, proxy `/api` → `http://localhost:5000` in `vite.config.js`.
 
 ## Goal
 An AI agent that monitors news related to a country's economics, filters out noise,
@@ -109,7 +109,7 @@ the topics, sources, and competitors the agent tracks.
 6. Return the array.
 
 ## Fallback (no LLM key set)
-If `ANTHROPIC_API_KEY` is missing, skip step 4-5's LLM call and instead do a keyword-overlap
+If `AI_API_KEY` is missing, skip step 4-5's LLM call and instead do a keyword-overlap
 heuristic: keep articles whose title+description contains ≥1 configured topic/competitor
 term, assign importance = count of matched terms (capped at 5), category = "Other".
 This keeps the demo runnable with zero AI cost if needed.
@@ -130,11 +130,11 @@ This keeps the demo runnable with zero AI cost if needed.
 - No dedup across separate runs (same article can reappear if run twice).
 
 ## Definition of done
-- [ ] `node server.js` starts without errors on port 4000.
-- [ ] `curl localhost:4000/config` returns the seeded topics/sources/competitors.
-- [ ] `curl -X POST localhost:4000/topics -H "Content-Type: application/json" -d '{"value":"test topic"}'` adds it, visible on next `/config` call.
-- [ ] `curl localhost:4000/news/run` returns a JSON array of articles with all 7 fields, sorted by importance desc.
-- [ ] Works with `ANTHROPIC_API_KEY` empty (falls back to keyword heuristic) — test this explicitly since `.env` currently has it blank.
+- [ ] `node server.js` starts without errors on port 5000.
+- [ ] `curl localhost:5000/config` returns the seeded topics/sources/competitors.
+- [ ] `curl -X POST localhost:5000/topics -H "Content-Type: application/json" -d '{"value":"test topic"}'` adds it, visible on next `/config` call.
+- [ ] `curl localhost:5000/news/run` returns a JSON array of articles with all 7 fields, sorted by importance desc.
+- [ ] Works with `AI_API_KEY` empty (falls back to keyword heuristic) — test this explicitly since `.env` currently has it blank.
 - [ ] `npm run dev` in `/frontend` shows the sidebar (3 editable lists) and news cards grouped by category.
 - [ ] Adding/removing a topic in the UI updates the sidebar without a full page reload.
 - [ ] No API keys appear anywhere in frontend code or network requests visible in devtools.
