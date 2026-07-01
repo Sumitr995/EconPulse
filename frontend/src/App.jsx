@@ -3,7 +3,6 @@ import { getConfig, runNews } from "@/api";
 import Sidebar from "@/components/Sidebar";
 import NewsFeed from "@/components/NewsFeed";
 import { Button } from "@/components/ui/button";
-
 const defaultConfig = { country: "India", topics: [], sources: [], competitors: [] };
 const sections = [
   { id: "for-you", label: "For you" },
@@ -32,7 +31,7 @@ export default function App() {
       console.error(err);
       setConfig(defaultConfig);
       setArticles([]);
-      setError("Live data is temporarily unavailable. The dashboard is ready for local review.");
+      setError(err?.response?.data?.error || err?.response?.data?.message || err?.message || "Failed to fetch news. Make sure the backend is running and NEWSAPI_KEY is set.");
     } finally {
       setLoading(false);
     }

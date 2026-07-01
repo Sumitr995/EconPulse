@@ -1,11 +1,10 @@
 {
   "country": "India",
   "topics": [
-    "economy",
     "GDP growth",
-    "inflation",
     "RBI monetary policy",
-    "trade deficit"
+    "trade deficit",
+    "economy"
   ],
   "sources": [
     "reuters.com",

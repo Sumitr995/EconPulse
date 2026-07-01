@@ -5,7 +5,7 @@ export async function fetchArticles(config, queryOverride = "") {
   if (!apiKey) return [];
 
   const newsapi = new NewsAPI(apiKey);
-  const q = queryOverride || [...config.topics, ...config.competitors].join(" OR ");
+  const q = queryOverride || (config.topics.length ? `(${config.topics.join(" OR ")}) AND ${config.country} economy` : `${config.country} economy`);
   const domains = config.sources.join(",");
 
   const response = await newsapi.v2.everything({
