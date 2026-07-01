@@ -6,7 +6,7 @@ function formatDate(value) {
 }
 
 export default function NewsFeed({ articles }) {
-  const grouped = {};
+  const grouped = { Other: [] };
   for (const article of articles) {
     const category = article.category || "Other";
     if (!grouped[category]) grouped[category] = [];
@@ -31,21 +31,31 @@ export default function NewsFeed({ articles }) {
           </div>
           <div className="space-y-3">
             {items.map((article, index) => (
-              <article key={`${article.title}-${index}`} className="border-t border-slate-200 py-3 first:border-t-0 first:pt-0">
-                <div className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
-                  {article.source || "Source"} • {formatDate(article.publishedAt)}
+              <article key={`${article.title}-${index}`} className="flex gap-4 border-t border-slate-200 py-3 first:border-t-0 first:pt-0">
+                {article.urlToImage && (
+                  <img
+                    src={article.urlToImage}
+                    alt=""
+                    className="mt-1 h-20 w-20 flex-shrink-0 rounded object-cover"
+                    onError={(e) => { e.target.style.display = "none"; }}
+                  />
+                )}
+                <div className="min-w-0 flex-1">
+                  <div className="mb-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500">
+                    {article.source || "Source"} • {formatDate(article.publishedAt)}
+                  </div>
+                  <a
+                    href={article.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-base font-medium leading-6 text-slate-900 hover:text-blue-700"
+                  >
+                    {article.title}
+                  </a>
+                  <p className="mt-2 text-sm leading-6 text-slate-600">
+                    {article.summary || article.description || "No summary available."}
+                  </p>
                 </div>
-                <a
-                  href={article.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-base font-medium leading-6 text-slate-900 hover:text-blue-700"
-                >
-                  {article.title}
-                </a>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  {article.summary || "A concise summary will appear here once the feed returns detailed copy."}
-                </p>
               </article>
             ))}
           </div>

@@ -1,11 +1,11 @@
 import NewsAPI from "newsapi";
 
-export async function fetchArticles(config) {
+export async function fetchArticles(config, queryOverride = "") {
   const apiKey = process.env.NEWSAPI_KEY;
   if (!apiKey) return [];
 
   const newsapi = new NewsAPI(apiKey);
-  const q = [...config.topics, ...config.competitors].join(" OR ");
+  const q = queryOverride || [...config.topics, ...config.competitors].join(" OR ");
   const domains = config.sources.join(",");
 
   const response = await newsapi.v2.everything({
@@ -30,6 +30,7 @@ export async function fetchArticles(config) {
       title: a.title,
       description: a.description,
       url: a.url,
+      urlToImage: a.urlToImage,
       source: a.source?.name || a.source,
       publishedAt: a.publishedAt,
     }));

@@ -42,7 +42,23 @@ export default function App() {
     refreshDashboard();
   }, [refreshDashboard]);
 
-  const featured = useMemo(() => articles[0] || null, [articles]);
+  const sectionKeywords = {
+    business: ["business", "economy", "market", "finance", "trade", "stock"],
+    markets: ["market", "stock", "bond", "commodity", "index", "rally", "bear", "bull"],
+    policy: ["policy", "central bank", "fed", "rbi", "monetary", "fiscal", "regulation", "government"],
+    tech: ["technology", "tech", "digital", "ai", "startup", "software", "cyber", "innovation"],
+  };
+
+  const filteredArticles = useMemo(() => {
+    if (activeSection === "for-you") return articles;
+    const keywords = sectionKeywords[activeSection] || [];
+    return articles.filter((a) => {
+      const text = `${a.title} ${a.description || ""} ${a.category || ""}`.toLowerCase();
+      return keywords.some((kw) => text.includes(kw));
+    });
+  }, [articles, activeSection]);
+
+  const featured = useMemo(() => filteredArticles[0] || null, [filteredArticles]);
 
   return (
     <div className="min-h-screen bg-[#f3f5f7] text-slate-900">
@@ -130,7 +146,7 @@ export default function App() {
                 ))}
               </div>
             ) : (
-              <NewsFeed articles={articles} />
+              <NewsFeed articles={filteredArticles} />
             )}
           </section>
         </main>
